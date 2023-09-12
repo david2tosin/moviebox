@@ -1,8 +1,10 @@
 import Image from "next/image";
 
 import { getYearFromDate } from "@/utils";
+import Link from "next/link";
 
 type Props = {
+  id: number;
   name: string;
   releaseDate: string;
   image: string;
@@ -30,6 +32,7 @@ async function getGenresList() {
 }
 
 export default async function MovieCard({
+  id,
   name,
   releaseDate,
   image,
@@ -39,6 +42,8 @@ export default async function MovieCard({
   const response = await getGenresList();
   const genres = response.genres;
 
+  console.log(genres);
+
   const filteredGenres = genres.filter((genre: any) =>
     genreIds.includes(genre.id)
   );
@@ -46,7 +51,7 @@ export default async function MovieCard({
   // console.log(name, filteredGenres);
 
   return (
-    <div className="relative space-y-3 text-xs">
+    <Link href={`/movies/${id}`} className="relative space-y-3 text-xs">
       <Image
         src={`http://image.tmdb.org/t/p/w500/${image}`}
         alt=""
@@ -83,6 +88,6 @@ export default async function MovieCard({
           />
         </svg>
       </span>
-    </div>
+    </Link>
   );
 }

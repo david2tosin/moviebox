@@ -96,6 +96,7 @@ export default async function Home() {
           {data.results.slice(0, 10).map((movie: any) => (
             <MovieCard
               key={movie.id}
+              id={movie.id}
               image={movie.poster_path}
               name={movie.title}
               rating={movie.vote_average}
