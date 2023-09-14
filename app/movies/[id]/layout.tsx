@@ -18,11 +18,11 @@ export default function DescriptionLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={poppins.className}>
-      <div className="w-full h-full min-h-[100vh] flex justify-center items-center">
-        <SideBar />
-        {children}
-      </div>
+    <div
+      className={`${poppins.className} w-full h-full min-h-[100vh] flex justify-center items-center}`}
+    >
+      <SideBar />
+      {children}
     </div>
   );
 }

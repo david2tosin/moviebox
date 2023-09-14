@@ -27,7 +27,7 @@ export default async function Home({ params: { id } }: Props) {
   const movie = await fetchMovieDetails(id);
 
   return (
-    <div className="min-h-screen lg:min-w-[65%]">
+    <div className="min-h-screen">
       <Image
         className="rounded-lg mx-8 my-8"
         src={`http://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
