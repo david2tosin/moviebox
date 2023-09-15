@@ -28,8 +28,13 @@ export default async function Home() {
   return (
     <main className="w-full h-full">
       <div className="w-full h-[600px] relative">
-        <div className="w-full flex items-center px-4 lg:px-24 absolute z-50 h-full top-0 left-0 bg-[linear-gradient(0deg,rgba(0,_0,_0,_0.50)_0%,rgba(0,_0,_0,_0.50)_100%)]">
+        <div className="w-full flex items-start px-4 py-6 lg:px-24 absolute z-50 h-full top-0 left-0 bg-[linear-gradient(0deg,rgba(0,_0,_0,_0.50)_0%,rgba(0,_0,_0,_0.50)_100%)]">
           <div className="lg:max-w-sm text-white space-y-4">
+            <div className="flex justify-start gap-6 items-center p-1 mb-24">
+              <Image src="/tv.png" alt="logo" height={50} width={50} />
+
+              <span className="font-bold text-2xl">MovieBox</span>
+            </div>
             <h1 className="text-5xl font-bold">John Wick 3 : Parabellum</h1>
 
             <div className="flex gap-8 item-center">
@@ -72,6 +77,14 @@ export default async function Home() {
 
               <span className="uppercase font-bold text-sm">Watch Trailer</span>
             </button>
+          </div>
+          <div className="border border-white rounded-lg flex justify-between items-center ">
+            <div className="flex justify-between gap-6 items-center px-2 py-1">
+              <span className="font-normal text-base text-white">
+                What do you want to watch?
+              </span>
+              <Image src="/Search.png" alt="logo" height={16} width={16} />
+            </div>
           </div>
         </div>
 

@@ -51,15 +51,27 @@ export default async function MovieCard({
   // console.log(name, filteredGenres);
 
   return (
-    <Link href={`/movies/${id}`} className="relative space-y-3 text-xs">
+    <Link
+      href={`/movies/${id}`}
+      className="relative space-y-3 text-xs"
+      data-testid={"movie-card"}
+    >
       <Image
+        data-testid={"movie-poster"}
         src={`http://image.tmdb.org/t/p/w500/${image}`}
         alt=""
         width={500}
         height={100}
       />
-      <p className="text-[#9CA3AF] font-bold">{getYearFromDate(releaseDate)}</p>
-      <h3 className="font-bold text-lg">{name}</h3>
+      <p
+        data-testid={"movie-release-date"}
+        className="text-[#9CA3AF] font-bold"
+      >
+        {getYearFromDate(releaseDate)}
+      </p>
+      <h3 data-testid={"movie-title"} className="font-bold text-lg">
+        {name}
+      </h3>
       <div className="flex items-center gap-2.5 text-[#111827]">
         <Image src="/imdb.png" alt="Imdb logo" width={35} height={17} />
         {`${rating} / 10`}

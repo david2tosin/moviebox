@@ -27,72 +27,101 @@ export default async function Home({ params: { id } }: Props) {
   const movie = await fetchMovieDetails(id);
 
   return (
-    <div className="min-h-screen">
-      <Image
-        className="rounded-lg mx-8 my-8"
-        src={`http://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-        alt="movie poster"
-        width={1100}
-        height={449}
-      />
-
-      <div className="flex justify-between px-12 mb-8">
-        <div className="flex justify-between items-center gap-6 text-[#404040] font-semibold text-2xl">
-          <h3>{movie.title}</h3>
-          <p>{getYearFromDate(movie.release_date)}</p>
-          <p>{movie.runtime} minutes</p>
-          {movie.genres.map((genre: any) => (
-            <span
-              className="p-1 font-medium text-base text-[#B91C1C] border rounded-lg border-[#F8E7EB]"
-              key={genre.id}
-            >
-              {genre.name}{" "}
-            </span>
-          ))}
+    <div className="min-h-screen w-full p-4">
+      <div className="p-4 lg:p-9">
+        <div className="w-full h-[449px] relative">
+          <Image
+            className="rounded-lg object-cover"
+            src={`http://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+            alt="movie poster"
+            fill
+          />
         </div>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-4 justify-between px-4 lg:px-12 mb-8">
+        <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-4 text-[#404040] font-semibold text-2xl">
+          <h3 data-testid={"movie-title"}>{movie.title} •</h3>
+          <p data-testid={"movie-release-date"}>
+            {getYearFromDate(movie.release_date)}
+          </p>
+
+          <p data-testid={"movie-runtime"}> • {movie.runtime} minutes </p>
+
+          <div className="flex gap-3">
+            {movie.genres.map((genre: any) => (
+              <span
+                className="py-1 px-4 font-medium text-base text-[#B91C1C] border rounded-2xl border-[#F8E7EB]"
+                key={genre.id}
+              >
+                {genre.name}{" "}
+              </span>
+            ))}
+          </div>
+        </div>
+
         <div>
           <div className="flex items-center gap-2.5 text-[#111827]">
-            <Image src="/Star.png" alt="Imdb logo" width={35} height={17} />
-            {`${movie.vote_average} | ${movie.vote_count}`}
+            <Image src="/Star.png" alt="Imdb logo" width={24} height={24} />
+
+            <span>{`${movie.vote_average} | ${movie.vote_count}`}</span>
           </div>
         </div>
       </div>
-      <div className="px-12 mb-10 flex gap-6">
+
+      <div className="px-4 lg:px-12 mb-10 flex flex-col lg:flex-row gap-6">
         <div className="font-normal text-xl">
-          <p className="text-[#333333] mb-8">{movie.overview}</p>
+          <p data-testid={"movie-overview"} className="text-[#333333] mb-8">
+            {movie.overview}
+          </p>
+
           <p className="mb-8">
             Director: <span className="text-[#BE123C]">Joseph Kosinski</span>
           </p>
+
           <p className="mb-8">
             Writers:{" "}
             <span className="text-[#BE123C]">
               Jim Cash, Jack Epps Jr, Peter Craig
             </span>
           </p>
+
           <p className="mb-8">
             Stars:{" "}
             <span className="text-[#BE123C]">
               Tom Cruise, Jennifer Connelly, Miles Teller
             </span>
           </p>
-          <div className="flex items-center gap-5">
+
+          <div className="flex flex-col lg:flex-row lg:items-center gap-5">
             <div className="rounded-lg bg-[#BE123C] text-white px-5 py-3">
               Top rated movie #65
             </div>
-            <div>Awards 9 nominations</div>
+
+            <div className="rounded-lg border border-[#C7C7C7] px-5 py-3">
+              Awards 9 nominations
+            </div>
           </div>
         </div>
+
         <div className=" space-y-6">
-          <div className="flex justify-center items-center gap-2 bg-[#BE123C] w-[360px] h-14 rounded-lg">
+          <div className="flex justify-center items-center gap-2 bg-[#BE123C] w-full lg:w-[360px] h-14 rounded-lg">
             <Image src="/TwoTickets.png" alt="ticket" width={25} height={25} />
             <p className="font-medium text-xl text-white">See ShowTimes</p>
           </div>
-          <div className="flex justify-center items-center gap-2 bg-[#BE123C]/10 w-[360px] h-14 rounded-lg">
+
+          <div className="flex justify-center items-center gap-2 bg-[#BE123C]/10 w-full lg:w-[360px] h-14 rounded-lg border border-[#BE123C]">
             <Image src="/ListB.png" alt="ticket" width={25} height={25} />
             <p className="font-medium text-xl">More watch options</p>
           </div>
-          <div className="relative rounded-lg">
-            <Image src="/ad.png" alt="advertisement" width={360} height={55} />
+
+          <div className="mt-4 relative rounded-lg w-full lg:w-[360px] h-[229px]">
+            <Image
+              src="/ad.png"
+              alt="advertisement"
+              fill
+              className="object-cover"
+            />
 
             <div className="p-2 w-full flex justify-between items-center gap-2 bg-[#12121280]/50 backdrop-blur-sm absolute bottom-0 rounded-lg">
               <Image src="/List.png" alt="ticket" width={25} height={25} />
